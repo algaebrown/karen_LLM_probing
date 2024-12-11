@@ -1,0 +1,67 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 30
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+score_fa        1              1              1
+total           1              1              1
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 30}
+Ready jobs (1):
+	score_fa
+Select jobs to execute...
+Using greedy selector because only single job has to be scheduled.
+Selected jobs (1):
+	score_fa
+Resources after job selection: {'_cores': 9223372036854775806, '_nodes': 29}
+
+[Mon Dec  2 16:42:11 2024]
+rule score_fa:
+    input: /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa
+    output: output/TROVE2_K562_ENCSR539ZTS.score.csv
+    jobid: 0
+    wildcards: model_name=TROVE2_K562_ENCSR539ZTS
+    resources: mem_mb=1000, disk_mb=1000, tmpdir=/tmp
+
+
+        export NUMBA_CACHE_DIR=/tscc/lustre/ddn/scratch/${USER} # TODO: HARCODED IS BAD
+        export MPLCONFIGDIR=/tscc/lustre/ddn/scratch/${USER}
+        if [ -s /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa ]; then
+            python /tscc/nfs/home/hsher/projects/RBPNet//score_fa_nomask.py                 /tscc/nfs/home/hsher/ps-yeolab5/rbpnet_models/TROVE2_K562_ENCSR539ZTS                 /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa                 output/TROVE2_K562_ENCSR539ZTS.score.csv                 /tscc/lustre/ddn/scratch/${USER}
+        else
+            touch output/TROVE2_K562_ENCSR539ZTS.score.csv
+        fi
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "score_fa", "local": false, "input": ["/tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa"], "output": ["output/TROVE2_K562_ENCSR539ZTS.score.csv"], "wildcards": {"model_name": "TROVE2_K562_ENCSR539ZTS"}, "log": [], "threads": 1, "resources": {"mem_mb": 1000, "disk_mb": 1000, "tmpdir": "/tmp"}, "jobid": 0, "cluster": {}}
+cd '/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake' && /tscc/nfs/home/hsher/miniconda3/envs/snakemake738/bin/python3.10 -m snakemake --snakefile '/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk' 'output/TROVE2_K562_ENCSR539ZTS.score.csv' --allowed-rules 'score_fa' --cores 'all' --attempt 1 --force-use-threads  --wait-for-files '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores_human/.snakemake/tmp.ty9fj0ny' '/tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --use-conda  --conda-frontend 'conda' --conda-prefix '/tscc/nfs/home/hsher/snakeconda' --conda-base-path '/tscc/nfs/home/hsher/miniconda3' --use-singularity  --singularity-prefix '/tscc/nfs/home/hsher/scratch/singularity' --singularity-args '--bind /tscc --nv' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --printshellcmds  --latency-wait 60 --scheduler 'ilp' --scheduler-solver-path '/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores_human/.snakemake/tmp.ty9fj0ny/0.jobfinished' || (touch '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores_human/.snakemake/tmp.ty9fj0ny/0.jobfailed'; exit 1)
+
+Submitted job 0 with external jobid 'Submitted batch job 3284102'.
+[Mon Dec  2 16:42:51 2024]
+Error in rule score_fa:
+    jobid: 0
+    output: output/TROVE2_K562_ENCSR539ZTS.score.csv
+    shell:
+        
+        export NUMBA_CACHE_DIR=/tscc/lustre/ddn/scratch/${USER} # TODO: HARCODED IS BAD
+        export MPLCONFIGDIR=/tscc/lustre/ddn/scratch/${USER}
+        if [ -s /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa ]; then
+            python /tscc/nfs/home/hsher/projects/RBPNet//score_fa_nomask.py                 /tscc/nfs/home/hsher/ps-yeolab5/rbpnet_models/TROVE2_K562_ENCSR539ZTS                 /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all_human.fa                 output/TROVE2_K562_ENCSR539ZTS.score.csv                 /tscc/lustre/ddn/scratch/${USER}
+        else
+            touch output/TROVE2_K562_ENCSR539ZTS.score.csv
+        fi
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 3284102
+
+Error executing rule score_fa on cluster (jobid: 0, external: Submitted batch job 3284102, jobscript: /tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores_human/.snakemake/tmp.ty9fj0ny/snakejob.score_fa.0.sh). For error details see the cluster log and the log files of the involved rule(s).
+Cleanup job metadata.
+Cleanup failed jobs output files.
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+BUG: Out of jobs ready to be started, but not all files built yet. Please check https://github.com/snakemake/snakemake/issues/823 for more information.
+Remaining jobs:
+ - score_fa: output/TROVE2_K562_ENCSR539ZTS.score.csv
+Complete log: ../../../../ps-yeolab3/hsher/karen_LLM/analysis_snake/.snakemake/log/2024-12-02T164210.677669.snakemake.log

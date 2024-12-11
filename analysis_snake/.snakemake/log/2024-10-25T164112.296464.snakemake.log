@@ -1,0 +1,45 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 30
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+score_fa        1              1              1
+total           1              1              1
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 30}
+Ready jobs (1):
+	score_fa
+Select jobs to execute...
+Using greedy selector because only single job has to be scheduled.
+Selected jobs (1):
+	score_fa
+Resources after job selection: {'_cores': 9223372036854775806, '_nodes': 29}
+
+[Fri Oct 25 16:41:34 2024]
+rule score_fa:
+    input: /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa
+    output: output/U2AF2_K562_ENCSR893RAV.score.csv
+    jobid: 0
+    wildcards: model_name=U2AF2_K562_ENCSR893RAV
+    resources: mem_mb=1000, disk_mb=1000, tmpdir=/tmp
+
+
+        export NUMBA_CACHE_DIR=/tscc/lustre/ddn/scratch/${USER} # TODO: HARCODED IS BAD
+        export MPLCONFIGDIR=/tscc/lustre/ddn/scratch/${USER}
+        if [ -s /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa ]; then
+            python /tscc/nfs/home/hsher/projects/RBPNet//score_fa.py                 /tscc/nfs/home/hsher/scratch/ENCODE3_K562/output/ml/rbpnet_model/U2AF2_K562_ENCSR893RAV                 /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa                 output/U2AF2_K562_ENCSR893RAV.score.csv                 /tscc/lustre/ddn/scratch/${USER}
+        else
+            touch output/U2AF2_K562_ENCSR893RAV.score.csv
+        fi
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "score_fa", "local": false, "input": ["/tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa"], "output": ["output/U2AF2_K562_ENCSR893RAV.score.csv"], "wildcards": {"model_name": "U2AF2_K562_ENCSR893RAV"}, "log": [], "threads": 1, "resources": {"mem_mb": 1000, "disk_mb": 1000, "tmpdir": "/tmp"}, "jobid": 0, "cluster": {}}
+cd '/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake' && /tscc/nfs/home/hsher/miniconda3/envs/snakemake738/bin/python3.10 -m snakemake --snakefile '/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk' 'output/U2AF2_K562_ENCSR893RAV.score.csv' --allowed-rules 'score_fa' --cores 'all' --attempt 1 --force-use-threads  --wait-for-files '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores/.snakemake/tmp.0sh0r_1n' '/tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --use-conda  --conda-frontend 'conda' --conda-prefix '/tscc/nfs/home/hsher/snakeconda' --conda-base-path '/tscc/nfs/home/hsher/miniconda3' --use-singularity  --singularity-prefix '/tscc/nfs/home/hsher/scratch/singularity' --singularity-args '--bind /tscc --nv' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --printshellcmds  --latency-wait 60 --scheduler 'ilp' --scheduler-solver-path '/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores/.snakemake/tmp.0sh0r_1n/0.jobfinished' || (touch '/tscc/projects/ps-yeolab5/hsher/karen_data/eclip_model_scores/.snakemake/tmp.0sh0r_1n/0.jobfailed'; exit 1)
+
+Submitted job 0 with external jobid 'Submitted batch job 3020687'.
+[Fri Oct 25 17:06:36 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: ../../../../ps-yeolab3/hsher/karen_LLM/analysis_snake/.snakemake/log/2024-10-25T164112.296464.snakemake.log

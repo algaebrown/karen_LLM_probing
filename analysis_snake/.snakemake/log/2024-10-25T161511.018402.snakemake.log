@@ -1,0 +1,12 @@
+Full Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/__init__.py", line 610, in snakemake
+    workflow.include(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/workflow.py", line 1246, in include
+    exec(compile(code, snakefile.get_path_or_uri(), "exec"), self.globals)
+  File "/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk", line 13, in <module>
+    selected_models = metrics.loc[metrics['selected'], 'Experiment'].sort_values().tolist()
+NameError: name 'pd' is not defined
+
+NameError in line 12 of /tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk:
+name 'pd' is not defined
+  File "/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk", line 12, in <module>

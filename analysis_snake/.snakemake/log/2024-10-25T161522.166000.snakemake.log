@@ -1,0 +1,72 @@
+Building DAG of jobs...
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+all             1              1              1
+score_fa      173              1              1
+total         174              1              1
+
+
+[Fri Oct 25 16:16:18 2024]
+rule score_fa:
+    input: /tscc/nfs/home/hsher/ps-yeolab5/karen_data/all.fa
+    output: output/SF3B4_HepG2_ENCSR279UJF.score.csv
+    jobid: 132
+    wildcards: model_name=SF3B4_HepG2_ENCSR279UJF
+    resources: mem_mb=1000, disk_mb=1000, tmpdir=/tmp
+
+Full Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/utils.py", line 430, in format
+    return fmt.format(_pattern, *args, **variables)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/string.py", line 161, in format
+    return self.vformat(format_string, args, kwargs)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/string.py", line 165, in vformat
+    result, _ = self._vformat(format_string, args, kwargs, used_args, 2)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/string.py", line 205, in _vformat
+    obj, arg_used = self.get_field(field_name, args, kwargs)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/string.py", line 270, in get_field
+    obj = self.get_value(first, args, kwargs)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/string.py", line 227, in get_value
+    return kwargs[key]
+KeyError: 'RBPNET_PATH'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/jobs.py", line 913, in format_wildcards
+    return format(string, **_variables)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/utils.py", line 437, in format
+    raise NameError(
+NameError: The name 'RBPNET_PATH' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/__init__.py", line 722, in snakemake
+    success = workflow.execute(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/workflow.py", line 1110, in execute
+    success = self.scheduler.schedule()
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/scheduler.py", line 510, in schedule
+    self.run(runjobs)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/scheduler.py", line 558, in run
+    executor.run_jobs(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/executors/__init__.py", line 120, in run_jobs
+    self.run(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/executors/__init__.py", line 129, in run
+    self._run(job)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/executors/__init__.py", line 140, in _run
+    self.printjob(job)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/executors/__init__.py", line 160, in printjob
+    super().printjob(job)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/executors/__init__.py", line 146, in printjob
+    job.log_info(skip_dynamic=True)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/jobs.py", line 998, in log_info
+    logger.shellcmd(self.shellcmd, indent=indent)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/jobs.py", line 451, in shellcmd
+    self.format_wildcards(self.rule.shellcmd)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/jobs.py", line 915, in format_wildcards
+    raise RuleException("NameError: " + str(ex), rule=self.rule)
+snakemake.exceptions.RuleException: NameError: The name 'RBPNET_PATH' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}
+
+RuleException in line 35 of /tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk:
+NameError: The name 'RBPNET_PATH' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}

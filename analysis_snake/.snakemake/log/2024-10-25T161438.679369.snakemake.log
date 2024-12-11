@@ -1,0 +1,33 @@
+Full Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 781, in block_content
+    for t in self.subautomaton(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 121, in subautomaton
+    return self.subautomata[automaton](
+KeyError: 'expand'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/__init__.py", line 610, in snakemake
+    workflow.include(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/workflow.py", line 1228, in include
+    code, linemap, rulecount = parse(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 1223, in parse
+    for t, orig_token in automaton.consume():
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 107, in consume
+    for t, orig in self.state(token):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 1175, in python
+    for t in self.subautomaton(token.string).consume():
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 107, in consume
+    for t, orig in self.state(token):
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 181, in block
+    yield from self.block_content(token)
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 786, in block_content
+    self.error(
+  File "/tscc/nfs/home/hsher/miniconda3/envs/snakemake738/lib/python3.10/site-packages/snakemake/parser.py", line 118, in error
+    raise SyntaxError(msg, (self.snakefile.path, lineno(token), None, None))
+  File "/tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk", line 30
+SyntaxError: Unexpected keyword expand in rule definition
+
+SyntaxError in line 30 of /tscc/projects/ps-yeolab3/hsher/karen_LLM/analysis_snake/score_with_model.smk:
+Unexpected keyword expand in rule definition (score_with_model.smk, line 30)
