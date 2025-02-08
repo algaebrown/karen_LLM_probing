@@ -10,5 +10,5 @@ plt.rcParams['pdf.fonttype'] = 42
 plt.rcParams["image.cmap"] = "Dark2"
 plt.rcParams['axes.prop_cycle'] = plt.cycler(color=plt.cm.Dark2.colors)
 
-figdir = Path('/tscc/nfs/home/hsher/scratch/karen_fig/')
-outdir = Path('/tscc/nfs/home/hsher/ps-yeolab5/karen_data')
+figdir = Path('/tscc/nfs/home/bay001/projects/karen_synapse_20240529/permanent_data/charlene_work/karen_fig/')
+outdir = Path('/tscc/nfs/home/bay001/projects/karen_synapse_20240529/permanent_data/charlene_work/')
